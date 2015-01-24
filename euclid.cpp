@@ -13,8 +13,9 @@ int euclid(int a ,int b){
 		n2=r;
 
 	}
-	cout<<n1<<" is the proof of GCD"<<endl;
-
+    
+	cout<<n1<<" is GCD"<<endl;
+    
 	return n1;
 }
 
@@ -28,41 +29,47 @@ int extend_euclid(int a,int b){
     b2 = 1;
     b3 = b;
 
-    while(b3 >=1){
-
-    if (b3==0){
-        cout<<"No inverse."<<endl;
-    	return a3 = euclid(a,b);
-
-    	}
-    if (b3==1){
-    	cout<<b3<<"and "<<b2<<" is the inverse ."<<endl;
-    	return b3 = euclid(a,b) && b2;
-
-    	}
-    q = abs(a3/b3);
-    t1 = a1-(q*b1);
- 	t2 = a2-(q*b2);
- 	t3 = a3-(q*b3);
- 	a1 = b1;
- 	a2 = b2;
- 	a3 = b3;
- 	b1 = t1;
- 	b2 = t2;
- 	b3 = t3;
-    cout<<b3<<"...Calculating.."<<endl;
+    while(true){
+        if (b3==0){
+            
+            cout<<"No inverse."<<endl;
+            return a3 = euclid(a,b);
+            break;
+            }
+        if (b3==1){
+            
+            cout<<abs(b2)<<" is the inverse ."<<endl;
+            return b3 = euclid(a,b) && b2;
+            break;    
+            }
+    
+        q = abs(a3/b3);
+        t1 = a1-(q*b1);
+     	t2 = a2-(q*b2);
+     	t3 = a3-(q*b3);
+     	a1 = b1;
+     	a2 = b2;
+     	a3 = b3;
+     	b1 = t1;
+     	b2 = t2;
+     	b3 = t3;
+        cout<<a1<<"|"<<a2<<"|"<<a3<<"|"<<b1<<"|"<<b2<<"|"<<b3<<endl;
  	};
-
+    
 
 }
 
 int main(){
-    int a,b;
+    int a,b,c;
+
 	cout<<"Please enter two integers:";
 	cin>>a>>b;
-	//euclid(a,b);
- 	extend_euclid(a,b);
-
-
+	c=euclid(a,b);
+    if (c != 1)
+        cout<<"No inverse for this pairing."<<endl;   
+    else
+        extend_euclid(a,b);
+    
+    
 return 0;
 }
